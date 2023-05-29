@@ -1,0 +1,693 @@
+{
+	"info": {
+		"_postman_id": "239edd86-61cd-4a1d-8187-c8ee9231a273",
+		"name": "Blog API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Create post",
+					"_postman_id": "767d44a9-edac-490d-95a6-5eb0ad7c1c01",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Another post\",\n    \"description\": \"A desc\",\n    \"content\": \"Pricam pisem bla bla\",\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/blogs/647317ef64536eaf63718a31/posts",
+						"description": "Logs in"
+					},
+					"response": []
+				},
+				{
+					"name": "List posts",
+					"_postman_id": "9ebdc525-5710-4291-9bc7-1e424412eade",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/blogs/64732dcb61e1d56cbfd2f75c/posts?page=1&limit=3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"blogs",
+								"64732dcb61e1d56cbfd2f75c",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post",
+					"_postman_id": "530d6a4e-8a15-4115-beba-113727648a9b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/posts/6470bd3134f63c49945a09b6"
+					},
+					"response": []
+				},
+				{
+					"name": "Update post",
+					"_postman_id": "119deff2-8cbf-48a2-8749-8ee956215aa1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"My first blog post updated\",\n    \"description\": \"A desc\",\n    \"content\": \"Pricam pisem bla bla\",\n    \"createdAt\": \"2023-05-26T14:07:45.409Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/posts/6470bd3134f63c49945a09b6"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "c3767635-d69f-4743-817c-df06a914cacf",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "717158ac-e5ae-4702-a3c3-0ea72a810241",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2a2ea27b-26e7-4650-84ba-a1ab90ecf123",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register . user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7d556196-2291-4627-a3d4-8f718a3b2a3a",
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "57d7c10e-429e-4ca3-bd36-4285ce90ec52",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Darko\",\n    \"password\": \"Password\",\n    \"role\": \"publisher\",\n    \"email\": \"darko@darko.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a6c22b92-e4ca-40c9-b906-538b38638a9e",
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "e0c8d46e-14ff-48fd-8aaf-f29b838617a8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Password\",\n    \"email\": {\n        \"$gt\": \"\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Get logged in user",
+					"_postman_id": "b6c2913a-42d8-43b1-975e-2cc567313d4f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"publisher_new@darko.com\",\n    \"name\": \"Mitar Miric\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/auth/updatedetails"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7d556196-2291-4627-a3d4-8f718a3b2a3a",
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "a4f0f8fc-de49-4c39-9ec1-442cd7aed525",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"publisher2@darko.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/auth/forgotpassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7d556196-2291-4627-a3d4-8f718a3b2a3a",
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "c1e7708b-b6dd-419d-8d3c-f17cd3927129",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/auth/resetpassword/170be3dd28038c59ccb1547e3bd924bbb1857281"
+					},
+					"response": []
+				},
+				{
+					"name": "Update details",
+					"_postman_id": "7ab5e41b-0df2-452f-9744-40132f1e7375",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"publisher_new@darko.com\",\n    \"name\": \"Mitar\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/auth/updatedetails"
+					},
+					"response": []
+				},
+				{
+					"name": "Update password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7d556196-2291-4627-a3d4-8f718a3b2a3a",
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "6ae9a0f1-2891-49a7-8a2e-89fd52a11526",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Kesa\",\n    \"newPassword\": \"Password123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/auth/updatepassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a6c22b92-e4ca-40c9-b906-538b38638a9e",
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "caeb1b7b-44d1-4437-86ea-522b0b5c9213",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Password\",\n    \"email\": \"admin@darko.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/auth/logout"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "73e53d91-eece-4378-928d-da5a8d5f8853"
+		},
+		{
+			"name": "Blogs",
+			"item": [
+				{
+					"name": "Create Blog",
+					"_postman_id": "e30bedbe-5cf6-421e-8de5-51a0bf6fe61d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"My Blog\",\n    \"description\": \"A desc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/blogs"
+					},
+					"response": []
+				},
+				{
+					"name": "List Blogs",
+					"_postman_id": "54966b9f-52a6-485e-b3b7-4b2b5e12b8d7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/blogs"
+					},
+					"response": []
+				},
+				{
+					"name": "Get single blog",
+					"_postman_id": "8717e877-3369-4d1e-898e-f8cbd74a3928",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/blogs/647266658d1ecb4baf7180f1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete blog",
+					"_postman_id": "de6317e8-676f-4ce5-ba8a-809d038b596b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/blogs/647266658d1ecb4baf7180f1"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "a1597581-d062-4ab1-bf34-3b12dfd6259b"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List Users",
+					"_postman_id": "b2bc793b-0aa3-4a0a-8caf-89b4aabce963",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"_postman_id": "a539dda5-6d04-4cce-87c6-c3b6f91308b9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/users/64732da961e1d56cbfd2f757"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"_postman_id": "c42b8fb3-0fbc-4d78-8366-13f2b24711c0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Mitar2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/users/64732da961e1d56cbfd2f757"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"_postman_id": "41565cc9-8d0d-4bf8-9754-f87a5dea8d1e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/users/64732da961e1d56cbfd2f757"
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"_postman_id": "6f2df93f-6e1b-4fbd-a074-189883388cb1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{TOKEN}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/api/v1/users"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "f2d4f29f-e38c-4e85-a719-c8c20e7cb926",
+			"description": "CRUD functionality for Users only available to admins"
+		}
+	]
+}
