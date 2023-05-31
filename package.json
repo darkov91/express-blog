@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "start": "ts-node dist/server",
+    "build": "tsc",
+    "start": "node ./dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -20,11 +21,8 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@prisma/client": "^4.14.1",
     "@types/nodemailer": "^6.4.8",
-    "@types/swagger-jsdoc": "^6.0.1",
     "bcryptjs": "^2.4.3",
-    "colorts": "^0.1.63",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

@@ -127,7 +127,6 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
     .update(req.params.resettoken)
     .digest("hex");
 
-  console.log(`${hashedToken}`.bgCyan);
   const user = await User.findOne({
     resetPasswordToken: hashedToken,
     resetPasswordExpire: { $gt: Date.now() },

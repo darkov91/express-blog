@@ -75,7 +75,6 @@ const enhanceListRequest =
     if (populate) {
       query = query.populate(populate) as QueryType;
     }
-    console.log(startIndex, limit);
     // Executing query
     const results = await query;
 
